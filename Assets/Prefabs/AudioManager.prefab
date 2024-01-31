@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5198905857399807557
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7894526264239195490}
+  - component: {fileID: 643300723451617463}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7894526264239195490
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5198905857399807557}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &643300723451617463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5198905857399807557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46f415841dd3f4044be6367a24185ed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameMusic: {fileID: 8300000, guid: 43cdc67016b55184c853c720424540f1, type: 3}
+  _startEngineSFX: {fileID: 8300000, guid: 3dba5237a25f85c47b8f0073b3e9ceac, type: 3}
+  _engineLoopSFX: {fileID: 8300000, guid: e89acc74e8f1e274782484eb3b5fe595, type: 3}
+  _accidentCarSFX: {fileID: 8300000, guid: b37960ae8b588174ea9534b85d3721aa, type: 3}
+  _accidentWalkerSFX: {fileID: 8300000, guid: 9f32abd18944da14ca44150882034d9e, type: 3}
+  _buttonSFX: {fileID: 8300000, guid: fc4671c86bd279541993448e30995aaf, type: 3}
+  _sliderSFX: {fileID: 8300000, guid: edce023af04a04f468b4a0853d52650e, type: 3}
+  _soundsSlider: {fileID: 0}
+  _musicSlider: {fileID: 0}
