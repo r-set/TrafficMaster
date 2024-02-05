@@ -17,6 +17,7 @@ public class SelectLevel : MonoBehaviour
     private void LoadLevel()
     {
         UIManager.Instance.HideLevelPopup();
-        SceneLoader.Instance.LoadSceneWithButtonSFX("Day " + _level);
+        UIManager.Instance.SpreadClouds();
+        SceneLoader.Instance.LoadSceneName("Day " + _level);
     }
 }

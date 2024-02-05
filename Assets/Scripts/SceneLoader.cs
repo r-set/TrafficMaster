@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -15,8 +16,6 @@ public class SceneLoader : MonoBehaviour
     private string _nextSceneName;
     private int _currentSceneIndex;
     private int _nextSceneIndex;
-
-    private AudioClip _buttonUISFX;
 
     public static SceneLoader Instance;
     private UIManager _uiManager;
@@ -36,8 +35,6 @@ public class SceneLoader : MonoBehaviour
 
         _uiManager = UIManager.Instance;
         _audioManager = AudioManager.Instance;
-
-        _buttonUISFX = _audioManager.GetButtonSFX();
     }
 
     private void Start()
@@ -52,6 +49,11 @@ public class SceneLoader : MonoBehaviour
         _currentSceneName = SceneManager.GetActiveScene().name;
         _currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         _nextSceneIndex = (_currentSceneIndex + 1) % SceneManager.sceneCountInBuildSettings;
+
+        if (_nextSceneIndex == 0)
+        {
+            _nextSceneIndex = 1;
+        }
 
         if (_currentSceneName != "MainMenu")
         {
@@ -69,45 +71,88 @@ public class SceneLoader : MonoBehaviour
     {
         UpdateScenceInfo();
 
-        if (scene.name == "Day " + (SceneManager.sceneCountInBuildSettings))
+        if (_currentSceneIndex > 10)
         {
             LoadMainMenu();
+
+            _uiManager.ShiftClouds();
         }
     }
 
-    public void LoadSceneWithButtonSFX(string sceneName)
+    public void LoadSceneName(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
-        _audioManager.PlayButtonSFX(_buttonUISFX);
     }
 
     public void LoadNewGame()
     {
-        LoadSceneWithButtonSFX("Day 1");
+        LoadSceneName("Day 1");
+
+        _uiManager.SpreadClouds();
     }
 
     public void LoadNextLevel()
     {
+        if (_currentSceneIndex > 10)
+        {
+            LoadMainMenu();
+        }
+        else
+        {
+            NextLevelClouds();
+        }
+    }
+
+    public void NextLevelClouds()
+    {
+        StartCoroutine(NextLevelCloudsCoroutine());
+    }
+
+    private IEnumerator NextLevelCloudsCoroutine()
+    {
+        _uiManager.ShiftClouds();
+
         UpdateScenceInfo();
 
         _nextSceneName = "Day " + _nextSceneIndex;
+
+        yield return new WaitForSeconds(1f);
 
         if (_currentSceneName != "MainMenu")
         {
             _textSceneName.text = _nextSceneName;
         }
 
-        LoadSceneWithButtonSFX(_nextSceneName);
+        LoadSceneName(_nextSceneName);
+
+        _uiManager.SpreadClouds();
     }
 
     public void LoadMainMenu()
     {
-        LoadSceneWithButtonSFX("MainMenu");
+        MainMenuClouds();
+    }
+
+    public void MainMenuClouds()
+    {
+        StartCoroutine(MainMenuCloudsCoroutine());
+    }
+
+    private IEnumerator MainMenuCloudsCoroutine()
+    {
+        _uiManager.ShiftClouds();
+
+        yield return new WaitForSeconds(1f);
+
+         _currentSceneIndex = 0;
+        _nextSceneIndex = 1;
+
+        LoadSceneName("MainMenu");
     }
 
     public void ReloadGame()
     {
-        LoadSceneWithButtonSFX(_currentSceneName);
+        LoadSceneName(_currentSceneName);
     }
 
     public void QuitGame()

@@ -4943,7 +4943,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 2136d61313d235b4fb883912924e08af, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5323,9 +5323,6 @@ MonoBehaviour:
   _routeLine: {fileID: 0}
   _carPrefab: {fileID: 6677623217663646865}
   _carVFX: {fileID: 1179176134317315281}
-  _audioManager: {fileID: 0}
-  _popupManager: {fileID: 0}
-  _sceneLoader: {fileID: 0}
 --- !u!82 &-4525494249555011768
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5474,7 +5471,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d706d71469ac1ef4289ab38565cb7a2b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -154,7 +154,6 @@ public class AudioManager : MonoBehaviour
             _soundsSource.loop = false;
 
             _soundsSource.Play();
-
         }
     }
 }
