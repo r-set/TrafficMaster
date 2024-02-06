@@ -50,11 +50,11 @@ public class AudioManager : MonoBehaviour
         _musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
         _soundsSlider.value = PlayerPrefs.GetFloat("SoundsVolume", 0.5f);
 
-        _musicSlider.onValueChanged.AddListener(ChangeMusicVolume);
-        _soundsSlider.onValueChanged.AddListener(ChangeSoundsVolume);
-
         ChangeMusicVolume(_musicSlider.value);
         ChangeSoundsVolume(_soundsSlider.value);
+
+        _musicSlider.onValueChanged.AddListener(ChangeMusicVolume);
+        _soundsSlider.onValueChanged.AddListener(ChangeSoundsVolume);
     }
 
     private void ChangeMusicVolume(float volume)
@@ -66,7 +66,7 @@ public class AudioManager : MonoBehaviour
             PlayerPrefs.SetFloat("MusicVolume", volume);
             PlayerPrefs.Save();
 
-            _musicSource.volume = volume;
+            _musicSource.volume = volume * ((_soundsSlider.value > 0) ? 1 : 0);
 
             if (volume > 0)
             {
@@ -92,10 +92,9 @@ public class AudioManager : MonoBehaviour
             PlayerPrefs.SetFloat("SoundsVolume", volume);
             PlayerPrefs.Save();
 
-            _soundsSource.volume = volume;
+            _soundsSource.volume = volume * ((_soundsSlider.value > 0) ? 1 : 0);
 
             changingSoundsVolume = false;
-
         }
     }
 
@@ -155,5 +154,27 @@ public class AudioManager : MonoBehaviour
 
             _soundsSource.Play();
         }
+    }
+
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if (!hasFocus)
+        {
+            StopAllAudio();
+        }
+        else
+        {
+            _musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
+            _soundsSlider.value = PlayerPrefs.GetFloat("SoundsVolume", 0.5f);
+
+            ChangeMusicVolume(_musicSlider.value);
+            ChangeSoundsVolume(_soundsSlider.value);
+        }
+    }
+
+    private void StopAllAudio()
+    {
+        _musicSource.Stop();
+        _soundsSource.Stop();
     }
 }

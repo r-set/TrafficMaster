@@ -6,7 +6,7 @@ public class WalkerManager : MonoBehaviour
     [Header("Walk Settings")]
     [SerializeField]  private Vector3[] _waypointsCoordinates;
     [SerializeField]  private float _waitTime = 2f;
-    [SerializeField]  private float _speedWalker = 2f;
+    [SerializeField]  private float _speedWalker = 1.5f;
 
     private Animator _animator;
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class CarManager : MonoBehaviour
 {
     [Header("Car Settings")]
-    private float _moveSpeed = 10f;
+    private float _moveSpeed = 12f;
     private float _startEngine = 1.5f;
     private float _rotationSpeed = 720f;
     private float _minDistance = 0.1f;
@@ -40,6 +40,7 @@ public class CarManager : MonoBehaviour
 
     private Camera _camera;
     private bool _isAccident = false;
+    private bool _carClicked = false;
 
     private AudioManager _audioManager;
     private UIManager _uiManager;
@@ -50,7 +51,6 @@ public class CarManager : MonoBehaviour
     private void Awake()
     {
         _camera = Camera.main;
-
         _carSFXSource = GetComponent<AudioSource>();
     }
 
@@ -105,7 +105,7 @@ public class CarManager : MonoBehaviour
 
     private void ClickOnCar()
     {
-        if (Input.GetMouseButtonDown(0) && !_isMoving && !_isAccident && !_uiManager._isPopupOpen)
+        if (Input.GetMouseButtonDown(0) && !_isMoving && !_isAccident && !_uiManager._isPopupOpen && !_carClicked)
         {
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -115,9 +115,9 @@ public class CarManager : MonoBehaviour
                 if (hit.collider.gameObject == _carPrefab.gameObject)
                 {
                     _audioManager.PlaySFX(_startEngineSFX, _carSFXSource);
+                    _carClicked = true;
 
                     Invoke("StartMove", _startEngine);
-
                 }
             }
         }
