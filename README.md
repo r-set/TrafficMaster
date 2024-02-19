@@ -8,3 +8,9 @@ A mobile game where you need to control the order of passing cars.
 <p align="center"><img src="Images/trafficmaster_game.png"/></p>
 <p align="center"><img src="Images/trafficmaster_accident.png"/></p>
 <p align="center"><img src="Images/trafficmaster_menu.png"/></p>
+
+## Assets
+* Car by DevilsWork.shop
+* Trees by Craftpix.net
+* Road by Kay Lousberg
+* Pedestrian by micaelsampaio
